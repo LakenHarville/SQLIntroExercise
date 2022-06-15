@@ -79,9 +79,17 @@ WHERE
 -- ------------------------------------------ Extra - May be difficult
 /* Your goal is to write a query that serves as an employee sales report.
 This query should return the employeeID, the employee's first and last name, the name of each product, how many of that product they sold */
-select e.EmployeeID, e.FirstName, e.LastName, p.Name, Sum(s.quantity) as TotalSold
-from sales as s
-inner join employees as e on e.EmployeeID = s.EmployeeID
-inner join products as p on p.ProductID = s.ProductID
-group by e.EmployeeID, p.ProductID
-order by TotalSold desc;
+SELECT 
+    e.EmployeeID,
+    e.FirstName,
+    e.LastName,
+    p.Name,
+    SUM(s.quantity) AS TotalSold
+FROM
+    sales AS s
+        INNER JOIN
+    employees AS e ON e.EmployeeID = s.EmployeeID
+        INNER JOIN
+    products AS p ON p.ProductID = s.ProductID
+GROUP BY e.EmployeeID , p.ProductID
+ORDER BY TotalSold DESC;
